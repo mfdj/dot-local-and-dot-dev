@@ -3,8 +3,7 @@
 Setup and test
 
 ```sh
-./setup.sh
-./test.sh
+./setup.sh && ./test.sh
 ```
 
 Checkout the [results](results) – the important findings are:
