@@ -63,7 +63,7 @@ test_hostname() {
    logresult
 }
 
-# do test
+# take note of system
 
 logresult "# run $result_id"
 logresult
@@ -74,13 +74,20 @@ logresult "$(sw_vers)"
 logresult "$(httpd -v)"
 logresult '```'
 logresult
-logresult /etc/hosts
+
+# setup /etc/hosts
 
 for name in $hostnames; do
    if ! grep "$name" /etc/hosts &> /dev/null; then
       echo "127.0.0.1 $name" | sudo tee -a /etc/hosts > /dev/null
    fi
+done
 
+logresult /etc/hosts
+
+# do test
+
+for name in $hostnames; do
    test_hostname $name
 done
 
