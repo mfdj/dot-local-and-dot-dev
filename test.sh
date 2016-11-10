@@ -1,11 +1,20 @@
 #!/usr/bin/env bash
 
 httpd_config=$(httpd -V | grep -i SERVER_CONFIG_FILE | awk -F '"' '{print $2}')
-vhost_config=${httpd_config%/*}/vhosts/test-dot-dev-and-local.conf
+vhosts_dir=${httpd_config%/*}/vhosts
+vhost_config=${vhosts_dir}/test-dot-dev-and-local.conf
 listen_port=$(grep '^Listen' "$httpd_config" | awk '{print $2}')
 
 # make sure httpd is including vhost-configs
-sed -i .orig "s|#Include\(.*vhosts.*\)$|Include \1|" "$httpd_config"
+# a. try and reuse default commented out vhost-decleration
+sed -i .orig "s|#Include\(.*vhosts.*\)$|Include ${vhosts_dir}/*conf|" "$httpd_config"
+
+# b. simply append our own
+if ! grep "Include ${vhosts_dir}/\*conf" "$httpd_config"; then
+   echo "Include ${vhosts_dir}/*conf" >> "$httpd_config"
+fi
+
+mkdir -p "$vhosts_dir"
 
 # replace {{…}} placeholders and write our vhost-config
 sed "s|{{PATH}}|$(PWD)|g" vhosts-template.conf \
