@@ -74,6 +74,7 @@ logresult "$(sw_vers)"
 logresult "$(httpd -v)"
 logresult '```'
 logresult
+logresult /etc/hosts
 
 for name in $hostnames; do
    if ! grep "$name" /etc/hosts &> /dev/null; then
@@ -85,7 +86,7 @@ done
 
 logresult '## Configs'
 logresult
-logresult /etc/hosts
 logresult "$vhost_config"
+logresult "$httpd_config"
 
 open "$result_file"
