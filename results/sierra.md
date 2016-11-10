@@ -716,11 +716,11 @@ SSLRandomSeed connect builtin
 # Forward requests to PHP-FPM
 <IfModule mod_fastcgi.c>
   AddHandler php-fastcgi .php
-  Action php-fastcgi /why-does/thisNEEDan-alias
-  Alias /why-does/thisNEEDan-alias /usr/local/var/www/htdocs/phpfpm.fcgi
+  Action php-fastcgi /php-fpm-alias
+  Alias /php-fpm-alias /usr/local/var/www/htdocs/phpfpm.fcgi
   FastCGIExternalServer /usr/local/var/www/htdocs/phpfpm.fcgi -socket /tmp/php-fpm.sock
 
-  <Location /why-does/thisNEEDan-alias>
+  <Location /php-fpm-alias>
       Order Deny,Allow
       Deny from all
       Allow from env=REDIRECT_STATUS
