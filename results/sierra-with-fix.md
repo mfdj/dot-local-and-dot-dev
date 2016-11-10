@@ -22,10 +22,10 @@ Server built:   Sep 27 2016 15:41:45
 127.0.0.1 zzz test.local
 127.0.0.1 zzz test.dev
 
+127.0.0.1 test.localhost
 127.0.0.1 test.com
 127.0.0.1 test.org
 127.0.0.1 test.gov
-127.0.0.1 test.localhost
 127.0.0.1 onlytld
 ```
 

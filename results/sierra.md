@@ -18,13 +18,12 @@ Server built:   Sep 27 2016 15:41:45
 255.255.255.255	broadcasthost
 ::1		localhost
 
-127.0.0.1 test.local
 127.0.0.1 test.dev
-
+127.0.0.1 test.local
+127.0.0.1 test.localhost
 127.0.0.1 test.com
 127.0.0.1 test.org
 127.0.0.1 test.gov
-127.0.0.1 test.localhost
 127.0.0.1 onlytld
 ```
 
