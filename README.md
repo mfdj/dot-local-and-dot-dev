@@ -54,3 +54,14 @@ $ curl -w '@curl-template.txt' -s http://test.local -o /dev/null
           ------------------
           time_total:  0.006
 ```
+
+### Why?
+
+I'm curious why this is happening!
+
+[man hosts](http://man7.org/linux/man-pages/man5/hosts.5.html) says:
+
+> For each host a single line should be present with the following information: 
+>   _IP\_address canonical\_hostname [aliases...]_
+
+Seemingly .dev and .local are less responsive as canonical-hostnames than as aliases?
