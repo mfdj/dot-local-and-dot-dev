@@ -10,7 +10,7 @@ listen_port=$(grep '^Listen' "$httpd_config" | awk '{print $2}')
 sed -i .orig "s|#Include\(.*vhosts.*\)$|Include ${vhosts_dir}/*conf|" "$httpd_config"
 
 # b. simply append our own
-if ! grep "Include ${vhosts_dir}/\*conf" "$httpd_config"; then
+if ! grep "Include ${vhosts_dir}/\*conf" "$httpd_config" 2> /dev/null; then
    echo "Include ${vhosts_dir}/*conf" >> "$httpd_config"
 fi
 
