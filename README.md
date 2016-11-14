@@ -70,9 +70,14 @@ $ curl -w '@curl-template.txt' -s http://test.local -o /dev/null
           time_total:  0.006
 ```
 
-### Why?
+### Bonjour and .local
 
-I'm curious why this is happening!
+It's a known issue that `.local` 
+See: https://support.apple.com/en-us/HT203136
+
+**Why `.dev` in Sierra?**
+
+### What's up with the workaround?
 
 [man hosts](http://man7.org/linux/man-pages/man5/hosts.5.html) says:
 
@@ -80,3 +85,8 @@ I'm curious why this is happening!
 >   _IP\_address canonical\_hostname [aliases...]_
 
 Seemingly .dev and .local are less responsive as canonical-hostnames than as aliases?
+
+### Other workarounds
+
+- https://coderwall.com/p/ylchfq/osx-yosemite-bonjour-mdnsresponder-problems
+- https://www.bram.us/2011/12/12/mamp-pro-slow-name-resolving-with-local-vhosts-in-lion-fix/
