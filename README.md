@@ -1,17 +1,32 @@
-### Testing the response time of .dev and .local on OSX
+### Project Impeteus
 
-Setup and test
+For local development it's typical to use `/etc/hosts` to use custom hostnames for projects. Typically it takes a **less than 10 milliseconds** for the OS to resolve the etc-host entries.
+
+However on macOS/OSX it can take **mulitple seconds** to resolve certain hostnames specifically ones containing either `.local` or `.dev` in the TLD. This repo exists to help diagnose this issue, raise awarness of it, and suggests some simple workarounds.
+
+### Running the tests
+
+**Requirements**
+
+Homebrew
+
+**Running the tests**
+
+Assuming you are using Homebrew you can clone and test pretty easily. If you use Homebrew'd Apache 2.4 for active development you should double-check the source first, but it's simply:
 
 ```sh
-./setup.sh && ./test.sh
+./setup.sh # run once
+./test.sh
 ```
 
-Checkout the [results](results) – the important findings are:
+### Findings
 
-- macOS Sierra has a 5 second look-up for **.dev** and **.local** entries in `/etc/hosts`
-- El Captain has a 5 second look-up for **.local**
-- Seemingly all other TLDs (including nonsense ones) don't have this problem
-- in both cases adding a word between the ip and the hostname like `127.0.0.1 arbitrary test.local` cuts that 5 seconds back down to the expected tens of milliseconds
+You can check the detailed [results](results) but the important findings are:
+
+- typically macOS resolves `/etc/hosts` entries in a less than 10ms
+- macOS Sierra has a 5s look-up for **.dev** and **.local** entries in `/etc/hosts`
+- El Captain has a 5s look-up for **.local**
+- in both cases adding a word between the ip and the hostname like `127.0.0.1 arbitrary test.local` cuts that 5s back down to milliseconds
 
 In other words `127.0.0.1 test.local` is slow:
 
